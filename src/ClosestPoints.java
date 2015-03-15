@@ -94,7 +94,7 @@ public class ClosestPoints {
 	{
 		double distance = 0;
 		
-		for(int i=0; i < byX1.size()-1; i++)
+		for(int i=0; i < byX1.size(); i++)
 		{
 			for(int j=i; j < byX1.size()-1; j++)
 			{
@@ -109,7 +109,7 @@ public class ClosestPoints {
 			}
 		}
 		
-		for(int i=0; i < byX2.size()-1; i++)
+		for(int i=0; i < byX2.size(); i++)
 		{
 			for(int j=i; j < byX2.size()-1; j++)
 			{
