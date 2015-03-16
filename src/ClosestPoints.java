@@ -70,11 +70,14 @@ public class ClosestPoints {
 	//DIVIDE SORTED ARRAYS TO TWO PARTS (x1,x2/y1,y2) 
 	public void partXY()
 	{
+		double x = 0;
 		medianax = (int) byX.get((byX.size()/2)-1).getX();
 		
 		for(int i=0; i < byX.size(); i++)
 		{
-			if(byX.get(i).getX() <= medianax)
+			x = byX.get(i).getX();
+			
+			if(x <= medianax)
 				byX1.add(byX.get(i));
 			else
 				byX2.add(byX.get(i));
@@ -82,7 +85,9 @@ public class ClosestPoints {
 		
 		for(int i=0; i < byY.size(); i++)
 		{
-			if(byY.get(i).getX() <= medianax)
+			x = byY.get(i).getX();
+			
+			if(x <= medianax)
 				byY1.add(byY.get(i));
 			else
 				byY2.add(byY.get(i));
@@ -128,15 +133,21 @@ public class ClosestPoints {
 	// MAKE DELTA SPACE
 	public void makeDeltaPart()
 	{
+		double x = 0;
+		
 		for(int i = byY1.size()-1; i >= 0; i--)
 		{
-			if(byY1.get(i).getX() > medianax-delta)
+			x = byY1.get(i).getX();
+			
+			if(x > medianax-delta)
 				sd1.add(byY1.get(i));
 		}
 		
 		for(int i=0; i < byY2.size(); i++)
 		{
-			if(byY2.get(i).getX() < medianax + delta)
+			x = byY2.get(i).getX();
+			
+			if(x < medianax + delta)
 				sd2.add(byY2.get(i));
 		}
 	}
@@ -146,28 +157,34 @@ public class ClosestPoints {
 	{
 		int blueindex = 0;
 		double distance = 0;
+		double y1,y2 = 0;
+		double x1,x2 = 0;
 		
 		for(int i=0; i < sd1.size(); i++)
 		{
 			for(int j=blueindex; j < sd2.size(); j++)
 			{
+				y1 = sd1.get(i).getY();
+				y2 = sd2.get(j).getY();
+				x1 = sd1.get(i).getX();
+				x2 = sd2.get(j).getX();
 				
-				if(sd2.get(j).getY() < delta - sd1.get(i).getY())
+				if(y2 < delta - y1)
 					blueindex ++;
 				
-				else if(sd2.get(j).getY() > delta - sd1.get(i).getY() && sd2.get(j).getY() <  delta + sd1.get(i).getY())
+				else if(y2 > delta - y1 && y2 <  delta + y1)
 				{
-					distance = Math.pow(sd2.get(j).getX() - sd1.get(i).getX(),2) + Math.pow(sd2.get(j).getY() - sd1.get(i).getY(),2); 
+					distance = Math.pow(x2 - x1,2) + Math.pow(y2 - y1,2); 
 	
 					if(delta == 0 || delta > distance)
 					{
 						delta = distance;
-						firstPoint.setLocation(sd1.get(i).getX(), sd1.get(i).getY());
-						secondPoint.setLocation(sd2.get(j).getX(), sd2.get(j).getY());
+						firstPoint.setLocation(x1, y1);
+						secondPoint.setLocation(x2, y2);
 					}
 				}
 				
-				else if(sd2.get(j).getY() > delta + sd1.get(i).getY())
+				else if(y2 > delta + y1)
 					j = sd2.size();
 			}
 		}
