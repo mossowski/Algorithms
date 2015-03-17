@@ -4,37 +4,38 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class FileReader {
 
-	private Scanner inFileData;
-	public ArrayList<Point> data;
-	
-	FileReader(String fileName) throws FileNotFoundException
-	{	
-		inFileData = new Scanner(new File(fileName));
-		data = new ArrayList<Point>();
+	private Scanner itsInFileData;
+	public ArrayList<Point> itsData;
 
-		while(inFileData.hasNextLine())
-		{
-			String line = inFileData.nextLine();
-			Scanner s = new Scanner(line);
+	FileReader(String fileName) throws FileNotFoundException {
+		itsInFileData = new Scanner(new File(fileName));
+		itsData = new ArrayList<Point>();
+
+		while (itsInFileData.hasNextLine()) {
+			String theLine = itsInFileData.nextLine();
+			Scanner s = new Scanner(theLine);
 			s.useDelimiter(" ");
 			int x = s.nextInt();
 			int y = s.nextInt();
-			Point p = new Point(x,y);					
-			data.add(p);
+			Point p = new Point(x, y);
+			itsData.add(p);
 			s.close();
 		}
-		inFileData.close();
+		itsInFileData.close();
 	}
-	
-	public void printData() 
-	{
+
+	// --------------------------------------------------------------------------
+
+	/**
+	 * Prints data
+	 * 
+	 */
+	public void printData() {
 		System.out.println("----------FILE DATA----------");
-		for(int i = 0; i < data.size(); i++)
-		{
-			System.out.println("X : " + data.get(i).getX() + " Y : " + data.get(i).getY());
+		for (int i = 0; i < itsData.size(); i++) {
+			System.out.println("X : " + itsData.get(i).getX() + " Y : " + itsData.get(i).getY());
 		}
 		System.out.println("----------FILE DATA----------\n");
 	}
