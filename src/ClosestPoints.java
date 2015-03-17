@@ -135,7 +135,9 @@ public class ClosestPoints {
 	{
 		double x = 0;
 		
-		for(int i = byY1.size()-1; i >= 0; i--)
+		delta = Math.sqrt(delta);
+		
+		for(int i = 0; i < byY1.size(); i++)
 		{
 			x = byY1.get(i).getX();
 			
@@ -147,9 +149,10 @@ public class ClosestPoints {
 		{
 			x = byY2.get(i).getX();
 			
-			if(x < medianax + delta)
+			if(x <= medianax + delta)
 				sd2.add(byY2.get(i));
 		}
+		
 	}
 	
 	//SEARCH FOR CLOSEST POINTS IN DELTA SPACE
@@ -169,23 +172,23 @@ public class ClosestPoints {
 				x1 = sd1.get(i).getX();
 				x2 = sd2.get(j).getX();
 				
-				if(y2 < delta - y1)
+				if(y2 < y1 - delta)
 					blueindex ++;
 				
-				else if(y2 > delta - y1 && y2 <  delta + y1)
+				else if(y2 > y1 - delta && y2 <  delta + y1)
 				{
 					distance = Math.pow(x2 - x1,2) + Math.pow(y2 - y1,2); 
 	
 					if(delta == 0 || delta > distance)
 					{
-						delta = distance;
+						delta = Math.sqrt(distance);
 						firstPoint.setLocation(x1, y1);
 						secondPoint.setLocation(x2, y2);
 					}
 				}
 				
 				else if(y2 > delta + y1)
-					j = sd2.size();
+					break;
 			}
 		}
 	}
@@ -260,7 +263,8 @@ public class ClosestPoints {
 		System.out.println("X : " + secondPoint.getX() + " Y : " + secondPoint.getY());
 		System.out.println("---------Points---------\n");
 		
-		System.out.println("\nDISTANCE\n" + Math.sqrt(delta));
+		System.out.println("\nDISTANCE\n" + delta);
+		System.out.println("\nMediana\n" + medianax);
 	}
 	
 	public void copy(ArrayList<Point> copy, ArrayList<Point> data)

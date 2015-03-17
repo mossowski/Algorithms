@@ -7,7 +7,7 @@ public class Main {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		FileReader fr = new FileReader("points2.txt");
+		FileReader fr = new FileReader("integers2.txt");
 		ClosestPoints cp = new ClosestPoints();
 		cp.sortByX(fr.data);
 		cp.sortByY(fr.data);
@@ -15,6 +15,8 @@ public class Main {
 		cp.deltaHalf();
 		cp.makeDeltaPart();
 		cp.deltaHalfLast();
+		//fr.printData();
+		//cp.printParts();
 		cp.printDeltaSpace();
 		cp.printResults();
 	}
