@@ -34,7 +34,8 @@ public class Main {
 		FileReader fr = new FileReader("sector.txt", true);
 		WindowQuery wq = new WindowQuery();
 		wq.constructIntervalTree(fr.itsDataLines);
-		wq.printResults();
+		// wq.printResults();
 		// fr.printDataLines();
+		wq.printTree(wq.itsTree.get(0));
 	}
 }

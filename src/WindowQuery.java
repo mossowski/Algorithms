@@ -11,7 +11,7 @@ public class WindowQuery {
 	private ArrayList<Line> itsSRight = null;
 	private ArrayList<Line> itsLLeft = null;
 	private ArrayList<Line> itsLRight = null;
-	private ArrayList<Node> itsTree = null;
+	public ArrayList<Node> itsTree = null;
 	private double itsMedianaX;
 
 	WindowQuery() {
@@ -36,16 +36,19 @@ public class WindowQuery {
 		double theXStart = 0;
 		double theXEnd = 0;
 
+		itsSLeft.clear();
+		itsSMid.clear();
+		itsSRight.clear();
+
 		for (int i = 0; i < S.size(); i++) {
 
 			theXStart = S.get(i).getStartX();
 			theXEnd = S.get(i).getEndX();
-
 			if (theXEnd < itsMedianaX)
 				itsSLeft.add(S.get(i));
 			else if (theXEnd >= itsMedianaX && theXStart <= itsMedianaX)
 				itsSMid.add(S.get(i));
-			else if (theXEnd < itsMedianaX)
+			else if (theXStart > itsMedianaX)
 				itsSRight.add(S.get(i));
 		}
 
@@ -71,6 +74,8 @@ public class WindowQuery {
 			}
 		};
 
+		itsLLeft.clear();
+		itsLRight.clear();
 		copy(itsLLeft, itsSMid);
 		copy(itsLRight, itsSMid);
 		Collections.sort(itsLLeft, theCompLeft);
@@ -145,18 +150,65 @@ public class WindowQuery {
 	 * @param S
 	 */
 	public Node constructIntervalTree(ArrayList<Line> S) {
-		if (S == null)
+		if (S.size() < 1) {
 			return null;
-		else {
+		} else {
 			computeMedianaX(S);
 			makeSParts(S);
 			makeLParts();
-		}
-		Node n = new Node(itsMedianaX, itsSMid, itsSLeft, itsSRight, itsLLeft, itsLRight);
-		n.leftChildren = constructIntervalTree(itsSLeft);
-		n.rightChildren = constructIntervalTree(itsSRight);
-		itsTree.add(n);
 
-		return n;
+			ArrayList<Line> theSMid = new ArrayList<Line>();
+			ArrayList<Line> theSLeft = new ArrayList<Line>();
+			ArrayList<Line> theSRight = new ArrayList<Line>();
+			ArrayList<Line> theLLeft = new ArrayList<Line>();
+			ArrayList<Line> theLRight = new ArrayList<Line>();
+
+			copy(theSMid, itsSMid);
+			copy(theSLeft, itsSLeft);
+			copy(theSRight, itsSRight);
+			copy(theLLeft, itsLLeft);
+			copy(theLRight, itsLRight);
+
+			Node n = new Node(itsMedianaX, theSMid, theSLeft, theSRight, theLLeft, theLRight);
+			itsTree.add(n);
+			n.leftChildren = constructIntervalTree(n.getItsSLeft());
+			n.rightChildren = constructIntervalTree(n.getItsSRight());
+
+			return n;
+		}
+	}
+
+	// --------------------------------------------------------------------------
+
+	/**
+	 * Query interval tree
+	 * 
+	 * @param root
+	 */
+	public void queryIntervalTree(Node v, double x) {
+		if (v != null) {
+			if (x <= v.getItsMedianaX()) {
+				queryIntervalTree(v.leftChildren, x);
+			} else {
+				queryIntervalTree(v.rightChildren, x);
+			}
+		}
+	}
+
+	public void printTree(Node Data1) {
+
+		if (Data1 != null) {
+			System.out.println("\nMediana : " + Data1.getItsMedianaX());
+
+			for (int i = 0; i < Data1.getItsLRight().size(); i++) {
+				System.out.println("\nLRight : " + Data1.getItsLRight().get(i).getEndX());
+			}
+			for (int i = 0; i < Data1.getItsLLeft().size(); i++) {
+				System.out.println("\nLLeft : " + Data1.getItsLLeft().get(i).getEndX());
+			}
+
+			printTree(Data1.leftChildren);
+			printTree(Data1.rightChildren);
+		}
 	}
 }
