@@ -9,6 +9,8 @@ public class WindowQuery {
 	private ArrayList<Line> itsSMid = null;
 	private ArrayList<Line> itsSLeft = null;
 	private ArrayList<Line> itsSRight = null;
+	private ArrayList<Line> itsLLeft = null;
+	private ArrayList<Line> itsLRight = null;
 	private double itsMedianaX;
 
 	WindowQuery() {
@@ -16,6 +18,8 @@ public class WindowQuery {
 		itsSMid = new ArrayList<Line>();
 		itsSLeft = new ArrayList<Line>();
 		itsSRight = new ArrayList<Line>();
+		itsLLeft = new ArrayList<Line>();
+		itsLRight = new ArrayList<Line>();
 	}
 
 	// --------------------------------------------------------------------------
@@ -90,5 +94,15 @@ public class WindowQuery {
 	 */
 	public void printResults() {
 		System.out.println("\nMediana : " + itsMedianaX);
+	}
+
+	/**
+	 * Makes copy of data
+	 * 
+	 */
+	public void copy(ArrayList<Line> copy, ArrayList<Line> data) {
+		for (int i = 0; i < data.size(); i++) {
+			copy.add(data.get(i));
+		}
 	}
 }
