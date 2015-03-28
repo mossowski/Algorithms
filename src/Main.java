@@ -21,8 +21,8 @@ public class Main {
 		cp.printDeltaSpace();
 		cp.printResults();*/
 		
-		//FileReader fr = new FileReader("nazwa_pliku",true);
-	    // fr.printDataLines();
+		FileReader fr = new FileReader("sector.txt",true);
+	    fr.printDataLines();
 		
 		
 	}
