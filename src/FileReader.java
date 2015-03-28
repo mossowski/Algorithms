@@ -10,7 +10,7 @@ public class FileReader {
 
 	private Scanner itsInFileData;
 	public ArrayList<Point> itsDataPoints;
-	public ArrayList<Line>  itsDataLines;
+	public ArrayList<Line> itsDataLines;
 
 	FileReader(String afileName) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(afileName));
@@ -30,7 +30,7 @@ public class FileReader {
 	}
 
 	// --------------------------------------------------------------------------
-	
+
 	FileReader(String afileName, boolean aIsLines) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(afileName));
 		itsDataLines = new ArrayList<Line>();
@@ -63,20 +63,18 @@ public class FileReader {
 		}
 		System.out.println("----------FILE DATA----------\n");
 	}
-	
+
 	// --------------------------------------------------------------------------
 
-		/**
-		 * Prints data lines
-		 * 
-		 */
-		public void printDataLines() {
-			System.out.println("----------FILE DATA----------");
-			for (int i = 0; i < itsDataLines.size(); i++) {
-				System.out.println("Start : " + itsDataLines.get(i).getStartX() 
-						+ "," + itsDataLines.get(i).getStartY() + " End : " + itsDataLines.get(i).getEndX() 
-						+ "," + itsDataLines.get(i).getEndY());
-			}
-			System.out.println("----------FILE DATA----------\n");
+	/**
+	 * Prints data lines
+	 * 
+	 */
+	public void printDataLines() {
+		System.out.println("----------FILE DATA----------");
+		for (int i = 0; i < itsDataLines.size(); i++) {
+			System.out.println("Start : " + itsDataLines.get(i).getStartX() + "," + itsDataLines.get(i).getStartY() + " End : " + itsDataLines.get(i).getEndX() + "," + itsDataLines.get(i).getEndY());
 		}
+		System.out.println("----------FILE DATA----------\n");
+	}
 }
