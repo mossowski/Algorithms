@@ -1,4 +1,11 @@
+import java.awt.Point;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+import javafx.scene.shape.Line;
 
 public class Main {
 
@@ -20,9 +27,23 @@ public class Main {
 		// cp.printParts();
 		cp.printDeltaSpace();
 		cp.printResults();*/
-		
-		FileReader fr = new FileReader("sector.txt",true);
-	    fr.printDataLines();
+			
+		System.out.print("Enter : ");
+		Scanner in = new Scanner(System.in);
+		int startX = in.nextInt();
+		int startY = in.nextInt();
+		int endX = in.nextInt();
+		int endY = in.nextInt();
+		in.close();
+		Line left = new Line(startX, startY, startX, endY);
+		Line right = new Line(endX, endY, endX, startY);
+		System.out.println("left : " + left.getStartX() + "," + left.getStartY() 
+				+ "   " + left.getEndX() + "," + left.getEndY());
+		System.out.println("right : " + right.getStartX() + "," + right.getStartY() 
+				+ "   " + right.getEndX() + "," + right.getEndY());
+        	
+        FileReader fr = new FileReader("sector.txt",true);
+	   // fr.printDataLines();
 		
 		
 	}
