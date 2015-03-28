@@ -23,7 +23,7 @@ public class WindowQuery {
 
 			if (theXEnd < itsXMed)
 				itsSLeft.add(itsS.get(i));
-			else if (theXEnd > itsXMed && theXStart < itsXMed)
+			else if (theXEnd >= itsXMed && theXStart <= itsXMed)
 				itsSMid.add(itsS.get(i));
 			else if (theXEnd < itsXMed)
 				itsSRight.add(itsS.get(i));
