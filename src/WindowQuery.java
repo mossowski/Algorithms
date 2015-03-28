@@ -48,6 +48,33 @@ public class WindowQuery {
 		}
 
 	}
+	
+	// --------------------------------------------------------------------------
+	
+	/**
+	 * Makes L parts
+	 * 
+	 */
+	public void makeLParts() {
+
+		Comparator<Line> theCompLeft = new Comparator<Line>() {
+			public int compare(Line o1, Line o2) {
+				return new Double(o1.getStartX()).compareTo(o2.getStartX());
+			}
+		};
+
+		Comparator<Line> theCompRight = new Comparator<Line>() {
+			public int compare(Line o1, Line o2) {
+				return new Double(o1.getEndX()).compareTo(o2.getEndX());
+			}
+		};
+
+		copy(itsLLeft, itsSMid);
+		copy(itsLRight, itsSMid);
+		Collections.sort(itsLLeft, theCompLeft);
+		Collections.sort(itsLRight, theCompRight);
+
+	}
 
 	// --------------------------------------------------------------------------
 
