@@ -11,6 +11,7 @@ public class WindowQuery {
 	private ArrayList<Line> itsSRight = null;
 	private ArrayList<Line> itsLLeft = null;
 	private ArrayList<Line> itsLRight = null;
+	private ArrayList<Node> itsTree = null;
 	private double itsMedianaX;
 
 	WindowQuery() {
@@ -20,6 +21,7 @@ public class WindowQuery {
 		itsSRight = new ArrayList<Line>();
 		itsLLeft = new ArrayList<Line>();
 		itsLRight = new ArrayList<Line>();
+		itsTree = new ArrayList<Node>();
 	}
 
 	// --------------------------------------------------------------------------
@@ -48,9 +50,9 @@ public class WindowQuery {
 		}
 
 	}
-	
+
 	// --------------------------------------------------------------------------
-	
+
 	/**
 	 * Makes L parts
 	 * 
@@ -123,6 +125,8 @@ public class WindowQuery {
 		System.out.println("\nMediana : " + itsMedianaX);
 	}
 
+	// --------------------------------------------------------------------------
+
 	/**
 	 * Makes copy of data
 	 * 
@@ -131,5 +135,28 @@ public class WindowQuery {
 		for (int i = 0; i < data.size(); i++) {
 			copy.add(data.get(i));
 		}
+	}
+
+	// --------------------------------------------------------------------------
+
+	/**
+	 * Constructs interval tree
+	 * 
+	 * @param S
+	 */
+	public Node constructIntervalTree(ArrayList<Line> S) {
+		if (S == null)
+			return null;
+		else {
+			computeMedianaX(S);
+			makeSParts(S);
+			makeLParts();
+		}
+		Node n = new Node(itsMedianaX, itsSMid, itsSLeft, itsSRight, itsLLeft, itsLRight);
+		n.leftChildren = constructIntervalTree(itsSLeft);
+		n.rightChildren = constructIntervalTree(itsSRight);
+		itsTree.add(n);
+
+		return n;
 	}
 }

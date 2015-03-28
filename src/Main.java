@@ -33,11 +33,8 @@ public class Main {
 
 		FileReader fr = new FileReader("sector.txt", true);
 		WindowQuery wq = new WindowQuery();
-		wq.computeMedianaX(fr.itsDataLines);
-		wq.makeSParts(fr.itsDataLines);
-		wq.makeLParts();
+		wq.constructIntervalTree(fr.itsDataLines);
 		wq.printResults();
 		// fr.printDataLines();
-
 	}
 }
