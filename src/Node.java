@@ -36,7 +36,7 @@ public class Node {
 	public void setItsSMid(ArrayList<Line> itsSMid) {
 		this.itsSMid = itsSMid;
 	}
-	
+
 	public ArrayList<Line> getItsSLeft() {
 		return itsSLeft;
 	}

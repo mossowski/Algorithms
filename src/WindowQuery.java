@@ -11,6 +11,7 @@ public class WindowQuery {
 	private ArrayList<Line> itsSRight = null;
 	private ArrayList<Line> itsLLeft = null;
 	private ArrayList<Line> itsLRight = null;
+	public ArrayList<Line> itsResult = null;
 	public ArrayList<Node> itsTree = null;
 	private double itsMedianaX;
 
@@ -21,6 +22,7 @@ public class WindowQuery {
 		itsSRight = new ArrayList<Line>();
 		itsLLeft = new ArrayList<Line>();
 		itsLRight = new ArrayList<Line>();
+		itsResult = new ArrayList<Line>();
 		itsTree = new ArrayList<Node>();
 	}
 
@@ -39,12 +41,13 @@ public class WindowQuery {
 		itsSLeft.clear();
 		itsSMid.clear();
 		itsSRight.clear();
-
+		
+		
 		for (int i = 0; i < S.size(); i++) {
 
 			theXStart = S.get(i).getStartX();
 			theXEnd = S.get(i).getEndX();
-			if (theXEnd < itsMedianaX)
+            if (theXEnd < itsMedianaX)
 				itsSLeft.add(S.get(i));
 			else if (theXEnd >= itsMedianaX && theXStart <= itsMedianaX)
 				itsSMid.add(S.get(i));
@@ -99,7 +102,7 @@ public class WindowQuery {
 		theData = sortByX(theData);
 		if (theData.size() % 2 == 1)
 			itsMedianaX = theData.get(theData.size() / 2);
-		else
+		else 
 			itsMedianaX = (theData.get(theData.size() / 2) + theData.get(theData.size() / 2 - 1)) / 2;
 	}
 
@@ -152,28 +155,30 @@ public class WindowQuery {
 	public Node constructIntervalTree(ArrayList<Line> S) {
 		if (S.size() < 1) {
 			return null;
-		} else {
+		}
+		else {
 			computeMedianaX(S);
 			makeSParts(S);
 			makeLParts();
-
+			
 			ArrayList<Line> theSMid = new ArrayList<Line>();
 			ArrayList<Line> theSLeft = new ArrayList<Line>();
 			ArrayList<Line> theSRight = new ArrayList<Line>();
 			ArrayList<Line> theLLeft = new ArrayList<Line>();
 			ArrayList<Line> theLRight = new ArrayList<Line>();
-
+			
 			copy(theSMid, itsSMid);
 			copy(theSLeft, itsSLeft);
 			copy(theSRight, itsSRight);
 			copy(theLLeft, itsLLeft);
 			copy(theLRight, itsLRight);
-
+			
+			
 			Node n = new Node(itsMedianaX, theSMid, theSLeft, theSRight, theLLeft, theLRight);
 			itsTree.add(n);
 			n.leftChildren = constructIntervalTree(n.getItsSLeft());
 			n.rightChildren = constructIntervalTree(n.getItsSRight());
-
+			
 			return n;
 		}
 	}
@@ -185,16 +190,46 @@ public class WindowQuery {
 	 * 
 	 * @param root
 	 */
-	public void queryIntervalTree(Node v, double x) {
+	public void queryIntervalTree(Node v, Line a) {
 		if (v != null) {
-			if (x <= v.getItsMedianaX()) {
-				queryIntervalTree(v.leftChildren, x);
+			double x = a.getStartX();
+			double y1 = a.getStartY();
+			double y2 = a.getEndY();
+			
+			if(y1 > y2)
+			{
+				double tmp = y2;
+				y2 = y1;
+				y1 = tmp;
+				
+			}
+		    
+			if (a.getStartX() <= v.getItsMedianaX()) {
+				for (int i=0; i < v.getItsLLeft().size(); i++) {
+					double xLeft = v.getItsLLeft().get(i).getStartX();
+					double xRight = v.getItsLLeft().get(i).getEndX();
+					double y = v.getItsLLeft().get(i).getStartY();
+					if ((xLeft <= x && xRight >= x) && (y1 <= y && y2 >= y)) {
+						itsResult.add(v.getItsLLeft().get(i));
+					}
+				}
+				queryIntervalTree(v.leftChildren, a);
 			} else {
-				queryIntervalTree(v.rightChildren, x);
+				for (int i=0; i < v.getItsLRight().size(); i++) {
+					double xLeft = v.getItsLRight().get(i).getStartX();
+					double xRight = v.getItsLRight().get(i).getEndX();
+					double y = v.getItsLRight().get(i).getStartY();
+					if ((xLeft <= x && xRight >= x) && (y1 <= y && y2 >= y)) {
+						itsResult.add(v.getItsLRight().get(i));
+					}
+				}
+				queryIntervalTree(v.rightChildren, a);
 			}
 		}
 	}
 
+	// --------------------------------------------------------------------------
+	
 	public void printTree(Node Data1) {
 
 		if (Data1 != null) {
@@ -207,8 +242,22 @@ public class WindowQuery {
 				System.out.println("\nLLeft : " + Data1.getItsLLeft().get(i).getEndX());
 			}
 
-			printTree(Data1.leftChildren);
-			printTree(Data1.rightChildren);
+			 printTree(Data1.leftChildren);
+			 printTree(Data1.rightChildren);
 		}
 	}
+	
+	// --------------------------------------------------------------------------
+	
+		public void printResult(ArrayList<Line> aResult) {
+
+			if (aResult != null) {
+				for (int i = 0; i < aResult.size(); i++) {
+					System.out.println("------------------------------------------------------------");
+					System.out.println("X : " + aResult.get(i).getStartX() + " Y: " + aResult.get(i).getStartY());
+					System.out.println("X : " + aResult.get(i).getEndX() + " Y: " + aResult.get(i).getEndY());
+					System.out.println("------------------------------------------------------------");
+				}
+			}
+		}
 }
