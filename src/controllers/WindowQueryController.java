@@ -42,7 +42,7 @@ public class WindowQueryController extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		paintQueryBox(g2d, ConsoleManager.theLeft, ConsoleManager.theRight);
+		paintLines(g2d, ConsoleManager.itsQueryBox, Color.red);
 		paintLines(g2d, FileReader.itsDataLines, Color.blue);
 		paintLines(g2d, WindowQuery.itsResult, Color.green);
 		paintAxis(g2d);
@@ -81,7 +81,6 @@ public class WindowQueryController extends JPanel {
 		double x1 = aLeft.getStartX() * 10 + itsXShift;
 		double y1 = aLeft.getStartY() * -10 + itsYShift;
 
-		System.out.println(aLeft.getEndX() + "  " + aLeft.getEndY() + "\n");
 		double width = Math.abs(aLeft.getStartX()) + Math.abs(aRight.getStartX()) * 10;
 		double height = Math.abs(aLeft.getStartY()) * 10 + Math.abs(aLeft.getEndY()) * 10;
 
