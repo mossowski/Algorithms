@@ -14,6 +14,8 @@ import javafx.scene.shape.Line;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import algorithms.WindowQuery;
+
 import managers.ConsoleManager;
 import utilities.FileReader;
 
@@ -41,9 +43,9 @@ public class WindowQueryController extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		paintQueryBox(g2d, ConsoleManager.theLeft, ConsoleManager.theRight);
-		paintLines(g2d, FileReader.itsDataLines);
+		paintLines(g2d, FileReader.itsDataLines, Color.blue);
+		paintLines(g2d, WindowQuery.itsResult, Color.green);
 		paintAxis(g2d);
-
 	}
 
 	// --------------------------------------------------------------------------
@@ -54,20 +56,20 @@ public class WindowQueryController extends JPanel {
 	 * @param g2d
 	 *            , aLines
 	 */
-	public void paintLines(Graphics2D g2d, ArrayList<Line> aLines) {
-		g2d.setColor(Color.blue);
+	public void paintLines(Graphics2D g2d, ArrayList<Line> aLines, Color aColor) {
+		g2d.setColor(aColor);
 		for (int i = 0; i < aLines.size(); i++) {
 			double x1 = aLines.get(i).getStartX() * 10 + itsXShift;
 			double y1 = -aLines.get(i).getStartY() * 10 + itsYShift;
 			double x2 = aLines.get(i).getEndX() * 10 + itsXShift;
-			double y2 = -aLines.get(i).getEndY() * 10  + itsYShift;
+			double y2 = -aLines.get(i).getEndY() * 10 + itsYShift;
 			g2d.setStroke(new BasicStroke(2));
 			g2d.draw(new Line2D.Double(x1, y1, x2, y2));
 		}
 	}
-	
+
 	// --------------------------------------------------------------------------
-	
+
 	/**
 	 * Paints query box
 	 * 
@@ -75,14 +77,14 @@ public class WindowQueryController extends JPanel {
 	 *            , aLines
 	 */
 	public void paintQueryBox(Graphics2D g2d, Line aLeft, Line aRight) {
-		
+
 		double x1 = aLeft.getStartX() * 10 + itsXShift;
 		double y1 = aLeft.getStartY() * -10 + itsYShift;
-		
+
 		System.out.println(aLeft.getEndX() + "  " + aLeft.getEndY() + "\n");
 		double width = Math.abs(aLeft.getStartX()) + Math.abs(aRight.getStartX()) * 10;
 		double height = Math.abs(aLeft.getStartY()) * 10 + Math.abs(aLeft.getEndY()) * 10;
-		
+
 		g2d.setColor(Color.red);
 		g2d.setStroke(new BasicStroke(2));
 		g2d.draw(new Rectangle2D.Double(x1, y1, width, height));

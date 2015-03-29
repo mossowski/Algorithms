@@ -15,7 +15,7 @@ public class WindowQuery {
 	private ArrayList<Line> itsSRight = null;
 	private ArrayList<Line> itsLLeft = null;
 	private ArrayList<Line> itsLRight = null;
-	public ArrayList<Line> itsResult = null;
+	public static ArrayList<Line> itsResult = null;
 	public ArrayList<Node> itsTree = null;
 	private double itsMedianaX;
 
