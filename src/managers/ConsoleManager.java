@@ -6,6 +6,9 @@ import java.util.Scanner;
 import javafx.scene.shape.Line;
 
 public class ConsoleManager {
+	
+	public static Line theLeft = null;
+	public static Line theRight = null;
 
 	public ConsoleManager() throws FileNotFoundException {
 		System.out.print("Enter : ");
@@ -16,8 +19,8 @@ public class ConsoleManager {
 		int endY = in.nextInt();
 		in.close();
 
-		Line theLeft = new Line(startX, startY, startX, endY);
-		Line theRight = new Line(endX, endY, endX, startY);
+		theLeft = new Line(startX, startY, startX, endY);
+		theRight = new Line(endX, endY, endX, startY);
 		System.out.println("left : " + theLeft.getStartX() + "," + theLeft.getStartY() + "   " + theLeft.getEndX() + "," + theLeft.getEndY());
 		System.out.println("right : " + theRight.getStartX() + "," + theRight.getStartY() + "   " + theRight.getEndX() + "," + theRight.getEndY());
 
