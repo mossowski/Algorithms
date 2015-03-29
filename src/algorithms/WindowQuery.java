@@ -1,6 +1,10 @@
+package algorithms;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import utilities.Node;
 
 import javafx.scene.shape.Line;
 
@@ -15,7 +19,7 @@ public class WindowQuery {
 	public ArrayList<Node> itsTree = null;
 	private double itsMedianaX;
 
-	WindowQuery() {
+	public WindowQuery() {
 		itsMedianaX = 0;
 		itsSMid = new ArrayList<Line>();
 		itsSLeft = new ArrayList<Line>();

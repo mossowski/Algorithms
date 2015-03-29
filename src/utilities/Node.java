@@ -1,3 +1,5 @@
+package utilities;
+
 import java.util.ArrayList;
 import javafx.scene.shape.Line;
 
@@ -12,7 +14,7 @@ public class Node {
 	public Node leftChildren;
 	public Node rightChildren;
 
-	Node(double aMedianaX, ArrayList<Line> aSMid, ArrayList<Line> aSLeft, ArrayList<Line> aSRight, ArrayList<Line> aLLeft, ArrayList<Line> aLRight) {
+	public Node(double aMedianaX, ArrayList<Line> aSMid, ArrayList<Line> aSLeft, ArrayList<Line> aSRight, ArrayList<Line> aLLeft, ArrayList<Line> aLRight) {
 		itsMedianaX = aMedianaX;
 		itsSMid = aSMid;
 		itsSLeft = aSLeft;
@@ -21,49 +23,73 @@ public class Node {
 		itsLRight = aLRight;
 	}
 
+	// --------------------------------------------------------------------------
+
 	public double getItsMedianaX() {
 		return itsMedianaX;
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void setItsMedianaX(double itsMedianaX) {
 		this.itsMedianaX = itsMedianaX;
 	}
 
+	// --------------------------------------------------------------------------
+
 	public ArrayList<Line> getItsSMid() {
 		return itsSMid;
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void setItsSMid(ArrayList<Line> itsSMid) {
 		this.itsSMid = itsSMid;
 	}
 
+	// --------------------------------------------------------------------------
+
 	public ArrayList<Line> getItsSLeft() {
 		return itsSLeft;
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void setItsSLeft(ArrayList<Line> itsSLeft) {
 		this.itsSLeft = itsSLeft;
 	}
 
+	// --------------------------------------------------------------------------
+
 	public ArrayList<Line> getItsSRight() {
 		return itsSRight;
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void setItsSRight(ArrayList<Line> itsSRight) {
 		this.itsSRight = itsSRight;
 	}
 
+	// --------------------------------------------------------------------------
+
 	public ArrayList<Line> getItsLLeft() {
 		return itsLLeft;
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void setItsLLeft(ArrayList<Line> itsLLeft) {
 		this.itsLLeft = itsLLeft;
 	}
 
+	// --------------------------------------------------------------------------
+
 	public ArrayList<Line> getItsLRight() {
 		return itsLRight;
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void setItsLRight(ArrayList<Line> itsLRight) {
 		this.itsLRight = itsLRight;

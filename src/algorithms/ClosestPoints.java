@@ -1,3 +1,4 @@
+package algorithms;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +17,7 @@ public class ClosestPoints {
 	private Point itsFirstPoint = new Point();
 	private Point itsSecondPoint = new Point();
 
-	ClosestPoints() {
+	public ClosestPoints() {
 		itsByX = new ArrayList<Point>();
 		itsByY = new ArrayList<Point>();
 		itsByX1 = new ArrayList<Point>();

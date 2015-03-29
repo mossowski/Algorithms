@@ -1,3 +1,5 @@
+package utilities;
+
 import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,8 +11,8 @@ import javafx.scene.shape.Line;
 public class FileReader {
 
 	private Scanner itsInFileData;
-	public ArrayList<Point> itsDataPoints;
-	public ArrayList<Line> itsDataLines;
+	public static ArrayList<Point> itsDataPoints;
+	public static ArrayList<Line> itsDataLines;
 
 	FileReader(String afileName) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(afileName));
@@ -31,7 +33,7 @@ public class FileReader {
 
 	// --------------------------------------------------------------------------
 
-	FileReader(String afileName, boolean aIsLines) throws FileNotFoundException {
+	public FileReader(String afileName, boolean aIsLines) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(afileName));
 		itsDataLines = new ArrayList<Line>();
 
