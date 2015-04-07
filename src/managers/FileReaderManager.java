@@ -7,6 +7,8 @@ import utilities.FileReader;
 public class FileReaderManager {
 
 	public FileReaderManager() throws FileNotFoundException {
-		new FileReader("sector.txt", true);
+		// ClosestPoints ---> new FileReader("integers.txt");
+		// WindowQuery ---> new FileReader("sector.txt", true);
+		new FileReader("integers.txt");
 	}
 }

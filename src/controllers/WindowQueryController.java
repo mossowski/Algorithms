@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 import algorithms.WindowQuery;
 
-import managers.ConsoleManager;
+import managers.WindowQueryManager;
 import utilities.FileReader;
 
 public class WindowQueryController extends JPanel {
@@ -42,7 +42,7 @@ public class WindowQueryController extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		paintLines(g2d, ConsoleManager.itsQueryBox, Color.red);
+		paintLines(g2d, WindowQueryManager.itsQueryBox, Color.red);
 		paintLines(g2d, FileReader.itsDataLines, Color.blue);
 		paintLines(g2d, WindowQuery.itsResult, Color.green);
 		paintAxis(g2d);

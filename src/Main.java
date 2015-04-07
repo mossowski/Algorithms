@@ -14,10 +14,10 @@ public class Main {
 
 		new ConsoleManager();
 
-		EventQueue.invokeLater(new Runnable() {
+		/* WindowQuery ---> EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new ApplicationManager();
 			}
-		});
+		});*/
 	}
 }

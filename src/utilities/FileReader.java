@@ -14,7 +14,7 @@ public class FileReader {
 	public static ArrayList<Point> itsDataPoints;
 	public static ArrayList<Line> itsDataLines;
 
-	FileReader(String afileName) throws FileNotFoundException {
+	public FileReader(String afileName) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(afileName));
 		itsDataPoints = new ArrayList<Point>();
 
