@@ -9,6 +9,6 @@ public class FileReaderManager {
 	public FileReaderManager() throws FileNotFoundException {
 		// ClosestPoints ---> new FileReader("integers.txt");
 		// WindowQuery ---> new FileReader("sector.txt", true);
-		new FileReader("integers.txt");
+		new FileReader("integers.txt",2);
 	}
 }

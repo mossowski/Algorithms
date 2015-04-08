@@ -7,6 +7,6 @@ public class MaximaManager {
 
 	MaximaManager() {
 		Maxima mx = new Maxima();
-		mx.printResult(mx.detectMaxima(FileReader.itsDataPoints));
+		mx.printResult(mx.detectMaxima(FileReader.itsDataMaximaPoints));
 	}
 }
