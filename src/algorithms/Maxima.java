@@ -7,10 +7,12 @@ import java.util.Comparator;
 
 public class Maxima {
 
-	public static ArrayList<Point> itsResult = null;
+	public static ArrayList<Point> itsResultLeft = null;
+	public static ArrayList<Point> itsResultRight = null;
 
 	public Maxima() {
-		itsResult = new ArrayList<Point>();
+		itsResultLeft = new ArrayList<Point>();
+		itsResultRight = new ArrayList<Point>();
 	}
 
 	// --------------------------------------------------------------------------
@@ -21,11 +23,12 @@ public class Maxima {
 	 * @param aData
 	 * @return
 	 */
-	public ArrayList<Point> detectMaxima(ArrayList<Point> aData) {
+	public ArrayList<ArrayList<Point>> detectMaxima(ArrayList<Point> aData) {
 
+		ArrayList<ArrayList<Point>> theMyList = new ArrayList<ArrayList<Point>>();
 		double yMax, yMin;
 		aData = sortByX(aData);
-		itsResult.add(aData.get(0));
+		itsResultLeft.add(aData.get(0));
 		yMin = aData.get(0).getY();
 		yMax = yMin;
 
@@ -34,17 +37,17 @@ public class Maxima {
 			double y = aData.get(i).getY();
 
 			if (y > yMax) {
-				itsResult.add(aData.get(i));
+				itsResultLeft.add(aData.get(i));
 				yMax = y;
 			}
 			if (y < yMin) {
-				itsResult.add(aData.get(i));
+				itsResultLeft.add(aData.get(i));
 				yMin = y;
 			}
 		}
 
 		int last = aData.size() - 1;
-		itsResult.add(aData.get(last));
+		itsResultRight.add(aData.get(last));
 		yMax = yMin;
 		yMin = aData.get(last).getY();
 
@@ -53,15 +56,19 @@ public class Maxima {
 			double y = aData.get(i).getY();
 
 			if (y > yMax) {
-				itsResult.add(aData.get(i));
+				itsResultRight.add(aData.get(i));
 				yMax = y;
 			}
 			if (y < yMin) {
-				itsResult.add(aData.get(i));
+				itsResultRight.add(aData.get(i));
 				yMin = y;
 			}
 		}
-		return itsResult;
+
+		theMyList.add(itsResultLeft);
+		theMyList.add(itsResultRight);
+
+		return theMyList;
 	}
 
 	// --------------------------------------------------------------------------
@@ -84,12 +91,23 @@ public class Maxima {
 
 	// --------------------------------------------------------------------------
 
-	public void printResult(ArrayList<Point> aResult) {
+	public void printResult(ArrayList<ArrayList<Point>> aResult) {
 
-		if (aResult != null) {
+		ArrayList<Point> theLeft = aResult.get(0);
+		ArrayList<Point> theRight = aResult.get(1);
+
+		if (theLeft != null) {
+			System.out.println("-----------------------------------LEFT TO RIGHT-------------------------");
+			for (int i = 0; i < theLeft.size(); i++) {
+				System.out.println("X : " + theLeft.get(i).getX() + " Y: " + theLeft.get(i).getY());
+			}
 			System.out.println("------------------------------------------------------------");
-			for (int i = 0; i < aResult.size(); i++) {
-				System.out.println("X : " + aResult.get(i).getX() + " Y: " + aResult.get(i).getY());
+		}
+
+		if (theRight != null) {
+			System.out.println("-----------------------------------RIGHT TO LEFT-------------------------");
+			for (int i = 0; i < theRight.size(); i++) {
+				System.out.println("X : " + theRight.get(i).getX() + " Y: " + theRight.get(i).getY());
 			}
 			System.out.println("------------------------------------------------------------");
 		}
