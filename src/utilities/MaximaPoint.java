@@ -6,7 +6,7 @@ public class MaximaPoint {
 	private int y;
 	private String orientation;
 	
-	MaximaPoint(int ax, int ay, String aorient){
+	public MaximaPoint(int ax, int ay, String aorient){
 		
 		x = ax;
 		y = ay;

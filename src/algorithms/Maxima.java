@@ -3,6 +3,7 @@ package algorithms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
 import utilities.MaximaPoint;
 
 public class Maxima {
@@ -23,52 +24,57 @@ public class Maxima {
 	 * @param aData
 	 * @return
 	 */
-	public ArrayList<ArrayList<MaximaPoint>> detectMaxima(ArrayList<MaximaPoint> aData) {
+	public ArrayList<ArrayList<MaximaPoint>> detectMaxima(ArrayList<MaximaPoint> aLeftData) {
 
 		ArrayList<ArrayList<MaximaPoint>> theMyList = new ArrayList<ArrayList<MaximaPoint>>();
+		ArrayList<MaximaPoint> theRightData = new ArrayList<MaximaPoint>();
 		double yMax, yMin;
-		aData = sortByX(aData);
-		aData.get(0).setOrientation("MIN | MAX");
-		itsResultLeft.add(aData.get(0));
-		yMin = aData.get(0).getY();
+
+		copy(theRightData, aLeftData);
+		aLeftData = sortByX(aLeftData);
+		theRightData = sortByX(theRightData);
+
+		aLeftData.get(0).setOrientation("MIN | MAX");
+		itsResultLeft.add(aLeftData.get(0));
+		yMin = aLeftData.get(0).getY();
 		yMax = yMin;
 
-		for (int i = 1; i < aData.size(); i++) {
+		for (int i = 1; i < aLeftData.size(); i++) {
 
-			double y = aData.get(i).getY();
+			double y = aLeftData.get(i).getY();
 
 			if (y > yMax) {
-				aData.get(i).setOrientation("MAX");
-				itsResultLeft.add(aData.get(i));
+				aLeftData.get(i).setOrientation("MAX");
+				itsResultLeft.add(aLeftData.get(i));
 				yMax = y;
 			}
-			if (y < yMin) {
-				aData.get(i).setOrientation("MIN");
-				itsResultLeft.add(aData.get(i));
+			/*if (y < yMin) {
+				aLeftData.get(i).setOrientation("MIN");
+				itsResultLeft.add(aLeftData.get(i));
 				yMin = y;
-			}
+			}*/
 		}
 
-		int last = aData.size() - 1;
-		aData.get(last).setOrientation("MIN | MAX");
-		itsResultRight.add(aData.get(last));
-		yMin = aData.get(last).getY();
+		int last = theRightData.size() - 1;
+		theRightData.get(last).setOrientation("MIN | MAX");
+		itsResultRight.add(theRightData.get(last));
+		yMin = theRightData.get(last).getY();
 		yMax = yMin;
 
-		for (int i = aData.size() - 1; i > 2; i--) {
+		for (int i = theRightData.size() - 1; i > 2; i--) {
 
-			double y = aData.get(i).getY();
+			double y = theRightData.get(i).getY();
 
 			if (y > yMax) {
-				aData.get(i).setOrientation("MAX");
-				itsResultRight.add(aData.get(i));
+				theRightData.get(i).setOrientation("MAX");
+				itsResultRight.add(theRightData.get(i));
 				yMax = y;
 			}
-			if (y < yMin) {
-				aData.get(i).setOrientation("MIN");
-				itsResultRight.add(aData.get(i));
+			/*if (y < yMin) {
+				theRightData.get(i).setOrientation("MIN");
+				itsResultRight.add(theRightData.get(i));
 				yMin = y;
-			}
+			}*/
 		}
 
 		theMyList.add(itsResultLeft);
@@ -116,6 +122,16 @@ public class Maxima {
 				System.out.println("X : " + theRight.get(i).getX() + " Y: " + theRight.get(i).getY() + " ORIENT: " + theRight.get(i).getOrientation());
 			}
 			System.out.println("------------------------------------------------------------");
+		}
+	}
+
+	// --------------------------------------------------------------------------
+
+	public void copy(ArrayList<MaximaPoint> copy, ArrayList<MaximaPoint> data) {
+		for (int i = 0; i < data.size(); i++) {
+
+			MaximaPoint p = new MaximaPoint(data.get(i).getX(), data.get(i).getY(), data.get(i).getOrientation());
+			copy.add(p);
 		}
 	}
 }
