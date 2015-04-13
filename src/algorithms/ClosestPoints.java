@@ -43,7 +43,8 @@ public class ClosestPoints {
 	 */
 	public void sortByX(ArrayList<Point> aData) {
 		Comparator<Point> theComp = new Comparator<Point>() {
-			public int compare(Point o1, Point o2) {
+			@Override
+            public int compare(Point o1, Point o2) {
 				return new Integer(o1.x).compareTo(o2.x);
 			}
 		};
@@ -60,7 +61,8 @@ public class ClosestPoints {
 	 */
 	public void sortByY(ArrayList<Point> aData) {
 		Comparator<Point> theComp = new Comparator<Point>() {
-			public int compare(Point o1, Point o2) {
+			@Override
+            public int compare(Point o1, Point o2) {
 				return new Integer(o1.y).compareTo(o2.y);
 			}
 		};

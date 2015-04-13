@@ -4,11 +4,25 @@ import java.io.FileNotFoundException;
 
 public class ConsoleManager {
 
-	public ConsoleManager() throws FileNotFoundException {
+	@SuppressWarnings("unused")
+    public ConsoleManager(String aKey) throws FileNotFoundException {
 
 		new FileReaderManager();
-		// ClosestPoints ---> new ClosestPointsManager();
-		// WindowQuery ---> new WindowQueryManager();
-		new MaximaManager();
+		
+		switch(aKey) {
+		
+		case "cp":
+		    new ClosestPointsManager();
+		    break;
+		case "wq":
+		    new WindowQueryManager();
+		    break;
+		case "m":	    
+		    new MaximaManager();
+		    break;
+        default:
+            break;
+            
+		}
 	}
 }

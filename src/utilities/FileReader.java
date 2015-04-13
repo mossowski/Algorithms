@@ -16,12 +16,21 @@ public class FileReader {
 	public static ArrayList<MaximaPoint> itsDataMaximaPoints;
 	public static ArrayList<Line> itsDataLines;
 
-	public FileReader(String afileName, int aWhatType) throws FileNotFoundException {
-		itsInFileData = new Scanner(new File(afileName));
+	public FileReader(String aFileName) throws FileNotFoundException {
+		itsInFileData = new Scanner(new File(aFileName));
 		itsDataPoints = new ArrayList<Point>();
 		itsDataMaximaPoints = new ArrayList<MaximaPoint>();
 		itsDataLines = new ArrayList<Line>();
+	}
+	
+	// --------------------------------------------------------------------------
 
+    /**
+     * Loads data
+     * 
+     */	
+	public void loadData(int aWhatType) {
+	    
 		switch (aWhatType) {
 
 		case 1:
@@ -68,34 +77,11 @@ public class FileReader {
 			}
 			itsInFileData.close();
 			break;
+        default:
+            break;
 		}
 	}
-
-	// --------------------------------------------------------------------------
-	/*
-	 * public FileReader(String afileName, String aIsMaxima) throws
-	 * FileNotFoundException { itsInFileData = new Scanner(new File(afileName));
-	 * itsDataMaximaPoints = new ArrayList<MaximaPoint>();
-	 * 
-	 * while (itsInFileData.hasNextLine()) { String theLine =
-	 * itsInFileData.nextLine(); Scanner s = new Scanner(theLine);
-	 * s.useDelimiter(" "); int x = s.nextInt(); int y = s.nextInt(); String
-	 * orientation = "None"; MaximaPoint p = new MaximaPoint(x, y, orientation);
-	 * itsDataMaximaPoints.add(p); s.close(); } itsInFileData.close(); }
-	 */
-	// --------------------------------------------------------------------------
-	/*
-	 * public FileReader(String afileName, boolean aIsLines) throws
-	 * FileNotFoundException { itsInFileData = new Scanner(new File(afileName));
-	 * itsDataLines = new ArrayList<Line>();
-	 * 
-	 * while (itsInFileData.hasNextLine()) { String theLine =
-	 * itsInFileData.nextLine(); Scanner s = new Scanner(theLine);
-	 * s.useDelimiter(" "); int startX = s.nextInt(); int startY = s.nextInt();
-	 * int endX = s.nextInt(); int endY = s.nextInt(); Line l = new Line(startX,
-	 * startY, endX, endY); itsDataLines.add(l); s.close(); }
-	 * itsInFileData.close(); }
-	 */
+	
 	// --------------------------------------------------------------------------
 
 	/**

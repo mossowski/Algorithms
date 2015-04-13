@@ -10,14 +10,24 @@ public class Main {
 	 * @param args
 	 * @throws FileNotFoundException
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	@SuppressWarnings("unused")
+    public static void main(String[] args) throws FileNotFoundException {
 
-		new ConsoleManager();
+	    /*  cs for ClosestPoints
+	     *  wq for WindowQuery 
+	        m for Maxima */
+	    
+	    String theWhich = "m";
+	    
+		new ConsoleManager(theWhich);
 
-		/* WindowQuery ---> EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new ApplicationManager();
-			}
-		});*/
+		if (theWhich == "wq") {
+		    EventQueue.invokeLater(new Runnable() {
+		        @Override
+                public void run() {
+		            new ApplicationManager();
+		        }
+		    });
+		}
 	}
 }

@@ -65,13 +65,15 @@ public class WindowQuery {
 	public ArrayList<ArrayList<Line>> makeLParts(ArrayList<Line> aSMid) {
 
 		Comparator<Line> theCompLeft = new Comparator<Line>() {
-			public int compare(Line o1, Line o2) {
+			@Override
+            public int compare(Line o1, Line o2) {
 				return new Double(o1.getStartX()).compareTo(o2.getStartX());
 			}
 		};
 
 		Comparator<Line> theCompRight = new Comparator<Line>() {
-			public int compare(Line o1, Line o2) {
+			@Override
+            public int compare(Line o1, Line o2) {
 				return new Double(o1.getEndX()).compareTo(o2.getEndX());
 			}
 		};
@@ -118,7 +120,8 @@ public class WindowQuery {
 	 */
 	public ArrayList<Double> sortByX(ArrayList<Double> aData) {
 		Comparator<Double> theComp = new Comparator<Double>() {
-			public int compare(Double o1, Double o2) {
+			@Override
+            public int compare(Double o1, Double o2) {
 				return new Double(o1).compareTo(o2);
 			}
 		};

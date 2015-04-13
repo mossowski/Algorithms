@@ -7,8 +7,10 @@ import utilities.FileReader;
 public class FileReaderManager {
 
 	public FileReaderManager() throws FileNotFoundException {
-		// ClosestPoints ---> new FileReader("integers.txt");
-		// WindowQuery ---> new FileReader("sector.txt", true);
-		new FileReader("integers.txt",2);
+	    /*  1 for ClosestPoints
+         *  2 for Maxima
+            3 for WindowQuery */
+		FileReader fr = new FileReader("integers.txt");
+		fr.loadData(2);
 	}
 }
