@@ -5,8 +5,8 @@ import algorithms.Maxima;
 
 public class MaximaManager {
 
-	MaximaManager() {
-		Maxima mx = new Maxima();
-		mx.printResult(mx.detectMaxima(FileReader.itsDataMaximaPoints));
-	}
+    MaximaManager() {
+        Maxima mx = new Maxima();
+        mx.printResult(mx.detectMaxima(FileReader.itsDataMaximaPoints));
+    }
 }
