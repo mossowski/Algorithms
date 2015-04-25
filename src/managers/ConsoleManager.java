@@ -20,6 +20,9 @@ public class ConsoleManager {
         case "m":
             new MaximaManager();
             break;
+        case "bi":
+            new BitonicManager();
+            break;
         default:
             break;
 

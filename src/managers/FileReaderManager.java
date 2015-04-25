@@ -10,7 +10,7 @@ public class FileReaderManager {
 	    /*  1 for ClosestPoints
          *  2 for Maxima
             3 for WindowQuery */
-		FileReader fr = new FileReader("integers.txt");
-		fr.loadData(2);
+		FileReader fr = new FileReader("integers3.txt");
+		fr.loadData(4);
 	}
 }

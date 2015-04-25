@@ -77,6 +77,23 @@ public class FileReader {
             }
             itsInFileData.close();
             break;
+            
+        case 4:
+        	int letter = 65;
+            while (itsInFileData.hasNextLine()) {
+                String theLine = itsInFileData.nextLine();
+                Scanner s = new Scanner(theLine);
+                s.useDelimiter(" ");
+                int x = s.nextInt();
+                int y = s.nextInt();
+                String orientation = "" + (char)letter;
+                letter ++;
+                MaximaPoint p = new MaximaPoint(x, y, orientation);
+                itsDataMaximaPoints.add(p);
+                s.close();
+            }
+            itsInFileData.close();
+            break;
         default:
             break;
         }
