@@ -77,6 +77,8 @@ public class Bitonic {
 
 		return theB[theB.length - 1] + distance(itsBitonicPoints.get(theLastIndex), itsBitonicPoints.get(theLastIndex - 1));
 	}
+	
+	// --------------------------------------------------------------------------
 
 	public double distance(MaximaPoint aA, MaximaPoint aB) {
 
@@ -111,10 +113,12 @@ public class Bitonic {
 			}
 		}
 	}
+	
+	// --------------------------------------------------------------------------
 
 	public void printResultLength(double aResult) {
 
-		System.out.println("------------------------ROUTE LENGTH------------------------------------");
+		System.out.println("------------------------ROUTE LENGTH------------------------");
 		System.out.println(aResult);
 		System.out.println("------------------------------------------------------------");
 	}
