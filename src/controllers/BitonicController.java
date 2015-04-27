@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import javax.swing.JPanel;
 
 import algorithms.Bitonic;
 import utilities.FileReader;
-import utilities.MaximaPoint;
 
 public class BitonicController extends JPanel {
 
@@ -42,7 +42,7 @@ public class BitonicController extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		paintPoints(g2d, FileReader.itsDataMaximaPoints, Color.blue);
+		paintPoints(g2d, FileReader.itsDataPoints, Color.blue);
 		paintLines(g2d, Bitonic.itsBitonicLines, Color.red);
 		paintAxis(g2d);
 	}
@@ -75,7 +75,7 @@ public class BitonicController extends JPanel {
 	 * @param g2d
 	 *            , aLines
 	 */
-	public void paintPoints(Graphics2D g2d, ArrayList<MaximaPoint> aLines, Color aColor) {
+	public void paintPoints(Graphics2D g2d, ArrayList<Point> aLines, Color aColor) {
 		g2d.setColor(aColor);
 		for (int i = 0; i < aLines.size(); i++) {
 			double x1 = aLines.get(i).getX() * scale + itsXShift;

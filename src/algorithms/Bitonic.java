@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import javafx.scene.shape.Line;
-import utilities.MaximaPoint;
 
 public class Bitonic {
 
@@ -23,9 +22,9 @@ public class Bitonic {
 	 * 
 	 */
 
-	public double makeBitonicRoute(ArrayList<MaximaPoint> aData) {
+	public double makeBitonicRoute(ArrayList<Point> aData) {
 
-		ArrayList<MaximaPoint> itsBitonicPoints = sortByX(aData);
+		ArrayList<Point> itsBitonicPoints = sortByX(aData);
 
 		double[] theB = new double[itsBitonicPoints.size()];
 		Point theFirst = new Point(0, 0);
@@ -80,7 +79,7 @@ public class Bitonic {
 	
 	// --------------------------------------------------------------------------
 
-	public double distance(MaximaPoint aA, MaximaPoint aB) {
+	public double distance(Point aA, Point aB) {
 
 		double distance = Math.pow(aA.getX() - aB.getX(), 2) + Math.pow(aA.getY() - aB.getY(), 2);
 
@@ -89,11 +88,11 @@ public class Bitonic {
 
 	// --------------------------------------------------------------------------
 
-	public ArrayList<MaximaPoint> sortByX(ArrayList<MaximaPoint> aData) {
-		Comparator<MaximaPoint> theComp = new Comparator<MaximaPoint>() {
+	public ArrayList<Point> sortByX(ArrayList<Point> aData) {
+		Comparator<Point> theComp = new Comparator<Point>() {
 			@Override
-			public int compare(MaximaPoint o1, MaximaPoint o2) {
-				return new Integer(o1.getX()).compareTo(o2.getX());
+			public int compare(Point o1, Point o2) {
+				return new Integer((int) o1.getX()).compareTo((int) o2.getX());
 			}
 		};
 		Collections.sort(aData, theComp);
@@ -102,13 +101,12 @@ public class Bitonic {
 
 	// --------------------------------------------------------------------------
 
-	public void printResult(ArrayList<MaximaPoint> aResult) {
+	public void printResult(ArrayList<Point> aResult) {
 
 		if (aResult != null) {
 			for (int i = 0; i < aResult.size(); i++) {
 				System.out.println("------------------------------------------------------------");
 				System.out.println("X : " + aResult.get(i).getX() + " Y: " + aResult.get(i).getY());
-				System.out.println("Let : " + aResult.get(i).getOrientation());
 				System.out.println("------------------------------------------------------------");
 			}
 		}

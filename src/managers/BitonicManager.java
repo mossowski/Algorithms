@@ -7,7 +7,7 @@ public class BitonicManager {
 
 	BitonicManager() {
 		Bitonic bi = new Bitonic();
-		bi.printResultLength(bi.makeBitonicRoute(FileReader.itsDataMaximaPoints));
+		bi.printResultLength(bi.makeBitonicRoute(FileReader.itsDataPoints));
 	}
 
 }
