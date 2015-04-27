@@ -10,7 +10,6 @@ public class Main {
 	 * @param args
 	 * @throws FileNotFoundException
 	 */
-	@SuppressWarnings("unused")
 	public static void main(String[] args) throws FileNotFoundException {
 
 		/*

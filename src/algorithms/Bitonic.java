@@ -31,14 +31,13 @@ public class Bitonic {
 		Point theFirst = new Point(0, 0);
 		Point theLast = new Point(0, 0);
 
-		for(int i = 0; i < theB.length; i++)
+		for (int i = 0; i < theB.length; i++)
 			theB[i] = 0;
-		
+
 		theB[1] = distance(itsBitonicPoints.get(0), itsBitonicPoints.get(1));
 
 		itsBitonicLines.add(new Line(itsBitonicPoints.get(0).getX(), itsBitonicPoints.get(0).getY(), itsBitonicPoints.get(1).getX(), itsBitonicPoints.get(1).getY()));
 
-		
 		for (int j = 2; j < itsBitonicPoints.size(); j++) {
 
 			double theMin = 100000;
@@ -54,29 +53,29 @@ public class Bitonic {
 				}
 
 				theSuma = theSuma + distance(itsBitonicPoints.get(i), itsBitonicPoints.get(i + 1));
-				
+
 			}
 
 			theB[j] = theMin;
 			itsBitonicLines.add(new Line(theFirst.getX(), theFirst.getY(), theLast.getX(), theLast.getY()));
 		}
-		
-		int theLastIndex = itsBitonicPoints.size() - 1;
-		
-		itsBitonicLines.add(new Line(itsBitonicPoints.get(theLastIndex).getX(), itsBitonicPoints.get(theLastIndex).getY(), 
-							itsBitonicPoints.get(theLastIndex-1).getX(), itsBitonicPoints.get(theLastIndex-1).getY()));
 
-		for (int k = 0; k < itsBitonicLines.size() ; k++) {
-			
+		int theLastIndex = itsBitonicPoints.size() - 1;
+
+		itsBitonicLines.add(new Line(itsBitonicPoints.get(theLastIndex).getX(), itsBitonicPoints.get(theLastIndex).getY(), itsBitonicPoints.get(theLastIndex - 1).getX(), itsBitonicPoints.get(
+				theLastIndex - 1).getY()));
+
+		for (int k = 0; k < itsBitonicLines.size(); k++) {
+
 			System.out.println("X : " + itsBitonicLines.get(k).getStartX() + " Y: " + itsBitonicLines.get(k).getEndX());
 		}
-		
-		for (int k = 0; k < theB.length ; k++) {
-			
+
+		for (int k = 0; k < theB.length; k++) {
+
 			System.out.println("B : " + theB[k]);
 		}
 
-		return theB[theB.length-1] + distance(itsBitonicPoints.get(theLastIndex),itsBitonicPoints.get(theLastIndex-1));
+		return theB[theB.length - 1] + distance(itsBitonicPoints.get(theLastIndex), itsBitonicPoints.get(theLastIndex - 1));
 	}
 
 	public double distance(MaximaPoint aA, MaximaPoint aB) {
@@ -112,7 +111,7 @@ public class Bitonic {
 			}
 		}
 	}
-	
+
 	public void printResultLength(double aResult) {
 
 		System.out.println("------------------------ROUTE LENGTH------------------------------------");

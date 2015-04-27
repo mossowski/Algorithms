@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 
 public class ConsoleManager {
 
-    @SuppressWarnings("unused")
     public ConsoleManager(String aKey) throws FileNotFoundException {
 
         new FileReaderManager();
