@@ -149,26 +149,25 @@ public class WindowQuery {
 	public Node constructIntervalTree(ArrayList<Line> aS) {
 		if (aS.size() < 1) {
 			return null;
-		} else {
-			computeMedianaX(aS);
-			ArrayList<ArrayList<Line>> theSParts = makeSParts(aS);
-
-			ArrayList<Line> theSMid = theSParts.get(0);
-			ArrayList<Line> theSLeft = theSParts.get(1);
-			ArrayList<Line> theSRight = theSParts.get(2);
-
-			ArrayList<ArrayList<Line>> theLParts = makeLParts(theSMid);
-
-			ArrayList<Line> theLLeft = theLParts.get(0);
-			ArrayList<Line> theLRight = theLParts.get(1);
-
-			Node n = new Node(itsMedianaX, theSMid, theSLeft, theSRight, theLLeft, theLRight);
-			itsTree.add(n);
-			n.leftChildren = constructIntervalTree(n.getItsSLeft());
-			n.rightChildren = constructIntervalTree(n.getItsSRight());
-
-			return n;
 		}
+		computeMedianaX(aS);
+		ArrayList<ArrayList<Line>> theSParts = makeSParts(aS);
+
+		ArrayList<Line> theSMid = theSParts.get(0);
+		ArrayList<Line> theSLeft = theSParts.get(1);
+		ArrayList<Line> theSRight = theSParts.get(2);
+
+		ArrayList<ArrayList<Line>> theLParts = makeLParts(theSMid);
+
+		ArrayList<Line> theLLeft = theLParts.get(0);
+		ArrayList<Line> theLRight = theLParts.get(1);
+
+		Node n = new Node(itsMedianaX, theSMid, theSLeft, theSRight, theLLeft, theLRight);
+		itsTree.add(n);
+		n.leftChildren = constructIntervalTree(n.getItsSLeft());
+		n.rightChildren = constructIntervalTree(n.getItsSRight());
+
+		return n;
 	}
 
 	// --------------------------------------------------------------------------

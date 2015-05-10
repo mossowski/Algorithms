@@ -27,7 +27,7 @@ public class Main {
 			EventQueue.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					new ApplicationManager();
+					new ApplicationManager(theWhich);
 				}
 			});
 		}
