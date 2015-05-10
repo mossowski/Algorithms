@@ -3,6 +3,7 @@ package managers;
 import javax.swing.JFrame;
 
 import controllers.BitonicController;
+import controllers.CentrumController;
 import controllers.WindowQueryController;
 
 public class ApplicationManager extends JFrame {
@@ -21,6 +22,8 @@ public class ApplicationManager extends JFrame {
 			setContentPane(new WindowQueryController());
 		else if (aWhich.equals("bi"))
 			setContentPane(new BitonicController());
+		else if (aWhich.equals("ce"))
+			setContentPane(new CentrumController());
 		setVisible(true);
 	}
 }

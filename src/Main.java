@@ -23,7 +23,7 @@ public class Main {
 
 		new ConsoleManager(theWhich);
 
-		if (theWhich == "wq" || theWhich == "bi") {
+		if (theWhich == "wq" || theWhich == "bi" || theWhich == "ce") {
 			EventQueue.invokeLater(new Runnable() {
 				@Override
 				public void run() {

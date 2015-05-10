@@ -17,6 +17,8 @@ public class FileReader {
 	public static ArrayList<Line> itsDataLines;
 	public static int itsCentrumK;
 	public static int itsCentrumN;
+	
+	// --------------------------------------------------------------------------
 
 	public FileReader(String aFileName) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(aFileName));
@@ -100,7 +102,7 @@ public class FileReader {
 			break;
 
 		case 5:
-			int counter = 0;
+			boolean isFirstLine = true;
 			
 			while (itsInFileData.hasNextLine()) {
 				String theLine = itsInFileData.nextLine();
@@ -108,19 +110,18 @@ public class FileReader {
 
 				s.useDelimiter(" ");
 				
-				if (counter == 0) {
-					itsCentrumK = s.nextInt();
-					itsCentrumN = s.nextInt();
-				}
-
-				else if (counter != 0) {
+				if (!isFirstLine) {
 					int x = s.nextInt();
 					int y = s.nextInt();
 					Point p = new Point(x, y);
 					itsDataPoints.add(p);
 				}
+				else {
+					itsCentrumK = s.nextInt();
+					itsCentrumN = s.nextInt();
+					isFirstLine = false;
+				}
 				s.close();
-				counter ++;
 			}
 			itsInFileData.close();
 			break;
