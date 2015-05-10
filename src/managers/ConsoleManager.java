@@ -22,6 +22,9 @@ public class ConsoleManager {
         case "bi":
             new BitonicManager();
             break;
+        case "ce":
+            new CentrumManager();
+            break;
         default:
             break;
 

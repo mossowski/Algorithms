@@ -19,7 +19,7 @@ public class Main {
 		 * m for Maxima
 		 */
 
-		String theWhich = "bi";
+		String theWhich = "ce";
 
 		new ConsoleManager(theWhich);
 

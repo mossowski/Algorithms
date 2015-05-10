@@ -15,12 +15,16 @@ public class FileReader {
 	public static ArrayList<Point> itsDataPoints;
 	public static ArrayList<MaximaPoint> itsDataMaximaPoints;
 	public static ArrayList<Line> itsDataLines;
+	public static int itsCentrumK;
+	public static int itsCentrumN;
 
 	public FileReader(String aFileName) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(aFileName));
 		itsDataPoints = new ArrayList<Point>();
 		itsDataMaximaPoints = new ArrayList<MaximaPoint>();
 		itsDataLines = new ArrayList<Line>();
+		itsCentrumK = 0;
+		itsCentrumN = 0;
 	}
 
 	// --------------------------------------------------------------------------
@@ -94,6 +98,33 @@ public class FileReader {
 			}
 			itsInFileData.close();
 			break;
+
+		case 5:
+			int counter = 0;
+			
+			while (itsInFileData.hasNextLine()) {
+				String theLine = itsInFileData.nextLine();
+				Scanner s = new Scanner(theLine);
+
+				s.useDelimiter(" ");
+				
+				if (counter == 0) {
+					itsCentrumK = s.nextInt();
+					itsCentrumN = s.nextInt();
+				}
+
+				else if (counter != 0) {
+					int x = s.nextInt();
+					int y = s.nextInt();
+					Point p = new Point(x, y);
+					itsDataPoints.add(p);
+				}
+				s.close();
+				counter ++;
+			}
+			itsInFileData.close();
+			break;
+
 		default:
 			break;
 		}
