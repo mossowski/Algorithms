@@ -21,7 +21,7 @@ public class Centrum {
 
 			// nextInt is normally exclusive of the top value,
 			// so add 1 to make it inclusive
-			int randomNum = rand.nextInt((aDataPoints.size() - 0) + 1) + 0;
+			int randomNum = rand.nextInt(aDataPoints.size());
 
 			itsCentrumPoints.add(aDataPoints.get(randomNum));
 			aDataPoints.remove(itsCentrumPoints.get(0));
