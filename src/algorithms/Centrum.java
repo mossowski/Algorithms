@@ -2,6 +2,7 @@ package algorithms;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Centrum {
 
@@ -13,15 +14,23 @@ public class Centrum {
 
 	public ArrayList<Point> makeCentrum(ArrayList<Point> aDataPoints, int aK, int aN) {
 
-		Point theFurthestPoint = new Point(0, 0);
+		if (aN > aK) {
 
-		itsCentrumPoints.add(aDataPoints.get(2));
-		aDataPoints.remove(itsCentrumPoints.get(0));
+			Point theFurthestPoint = new Point(0, 0);
+			Random rand = new Random();
 
-		for (int i = 1; i < aK; i++) {
-			theFurthestPoint = checkForFurthest(aDataPoints, itsCentrumPoints);
-			aDataPoints.remove(theFurthestPoint);
-			itsCentrumPoints.add(theFurthestPoint);
+			// nextInt is normally exclusive of the top value,
+			// so add 1 to make it inclusive
+			int randomNum = rand.nextInt((aDataPoints.size() - 0) + 1) + 0;
+
+			itsCentrumPoints.add(aDataPoints.get(randomNum));
+			aDataPoints.remove(itsCentrumPoints.get(0));
+
+			for (int i = 1; i < aK; i++) {
+				theFurthestPoint = checkForFurthest(aDataPoints, itsCentrumPoints);
+				aDataPoints.remove(theFurthestPoint);
+				itsCentrumPoints.add(theFurthestPoint);
+			}
 		}
 
 		return itsCentrumPoints;
@@ -36,17 +45,16 @@ public class Centrum {
 		double theDistanceMax = 0;
 
 		for (int j = 0; j < aDataPoints.size(); j++) {
-			
+
 			for (int i = 0; i < aPointsToCompare.size(); i++) {
 				theCurrentDistance = theCurrentDistance + distance(aDataPoints.get(j), aPointsToCompare.get(i));
-			
-			
+
 				if (theCurrentDistance > theDistanceMax) {
 					theDistanceMax = theCurrentDistance;
 					theResult = aDataPoints.get(j);
 				}
 			}
-			
+
 			theCurrentDistance = 0;
 		}
 
