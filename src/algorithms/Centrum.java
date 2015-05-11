@@ -7,6 +7,7 @@ import java.util.Random;
 public class Centrum {
 
 	public static ArrayList<Point> itsCentrumPoints = null;
+	public static double itsFurthestPoint = 0;
 
 	public Centrum() {
 		itsCentrumPoints = new ArrayList<Point>();
@@ -31,6 +32,8 @@ public class Centrum {
 				aDataPoints.remove(theFurthestPoint);
 				itsCentrumPoints.add(theFurthestPoint);
 			}
+			
+			calculateFurthestPoint(aDataPoints, itsCentrumPoints);
 		}
 
 		return itsCentrumPoints;
@@ -55,6 +58,7 @@ public class Centrum {
 				}
 			}
 
+			itsFurthestPoint = theDistanceMax;
 			theCurrentDistance = 0;
 		}
 
@@ -62,10 +66,35 @@ public class Centrum {
 	}
 
 	// --------------------------------------------------------------------------
+	
+	public void calculateFurthestPoint(ArrayList<Point> aDataPoints, ArrayList<Point> aPointsToCompare) {
+
+		double theCurrentDistance = 1000000;
+		double theDistanceMax = 0;
+
+		for (int j = 0; j < aDataPoints.size(); j++) {
+
+			for (int i = 0; i < aPointsToCompare.size(); i++) {
+				
+				if(theCurrentDistance > distance(aDataPoints.get(j), aPointsToCompare.get(i)))
+				theCurrentDistance = distance(aDataPoints.get(j), aPointsToCompare.get(i));
+
+				if (theCurrentDistance > theDistanceMax) {
+					theDistanceMax = theCurrentDistance;
+				}
+			}
+
+			itsFurthestPoint = theDistanceMax;
+			
+			theCurrentDistance = 1000000;
+		}
+	}
+
+	// --------------------------------------------------------------------------
 
 	public double distance(Point aA, Point aB) {
 
-		double distance = Math.pow(aA.getX() - aB.getX(), 2) + Math.pow(aA.getY() - aB.getY(), 2);
+		double distance = Math.sqrt(Math.pow(aA.getX() - aB.getX(), 2) + Math.pow(aA.getY() - aB.getY(), 2));
 
 		return distance;
 	}
@@ -80,6 +109,10 @@ public class Centrum {
 				System.out.println("X : " + aResult.get(i).getX() + " Y: " + aResult.get(i).getY());
 				System.out.println("------------------------------------------------------------");
 			}
+			
+			System.out.println("------------------------------------------------------------");
+			System.out.println("DISTANCE : " + itsFurthestPoint);
+			System.out.println("------------------------------------------------------------");
 		}
 	}
 
