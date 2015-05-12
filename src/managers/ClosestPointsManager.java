@@ -1,7 +1,7 @@
 package managers;
 
-import utilities.FileReader;
 import algorithms.ClosestPoints;
+import utilities.FileReader;
 
 public class ClosestPointsManager {
 

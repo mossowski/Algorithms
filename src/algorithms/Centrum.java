@@ -32,8 +32,6 @@ public class Centrum {
 				aDataPoints.remove(theFurthestPoint);
 				itsCentrumPoints.add(theFurthestPoint);
 			}
-			
-			calculateFurthestPoint(aDataPoints, itsCentrumPoints);
 		}
 
 		return itsCentrumPoints;
@@ -44,50 +42,32 @@ public class Centrum {
 	public Point checkForFurthest(ArrayList<Point> aDataPoints, ArrayList<Point> aPointsToCompare) {
 
 		Point theResult = new Point(0, 0);
-		double theCurrentDistance = 0;
-		double theDistanceMax = 0;
-
-		for (int j = 0; j < aDataPoints.size(); j++) {
-
-			for (int i = 0; i < aPointsToCompare.size(); i++) {
-				theCurrentDistance = theCurrentDistance + distance(aDataPoints.get(j), aPointsToCompare.get(i));
-
-				if (theCurrentDistance > theDistanceMax) {
-					theDistanceMax = theCurrentDistance;
-					theResult = aDataPoints.get(j);
-				}
-			}
-
-			itsFurthestPoint = theDistanceMax;
-			theCurrentDistance = 0;
-		}
-
-		return theResult;
-	}
-
-	// --------------------------------------------------------------------------
-	
-	public void calculateFurthestPoint(ArrayList<Point> aDataPoints, ArrayList<Point> aPointsToCompare) {
-
 		double theCurrentDistance = 1000000;
 		double theDistanceMax = 0;
 
 		for (int j = 0; j < aDataPoints.size(); j++) {
 
 			for (int i = 0; i < aPointsToCompare.size(); i++) {
-				
-				if(theCurrentDistance > distance(aDataPoints.get(j), aPointsToCompare.get(i)))
-				theCurrentDistance = distance(aDataPoints.get(j), aPointsToCompare.get(i));
 
-				if (theCurrentDistance > theDistanceMax) {
-					theDistanceMax = theCurrentDistance;
-				}
+				double theDistance = distance(aDataPoints.get(j), aPointsToCompare.get(i));
+
+				if (theCurrentDistance > theDistance)
+					theCurrentDistance = theDistance;
+
+			}
+
+			// theCurrentDistance == min
+
+			if (theCurrentDistance > theDistanceMax) {
+				theDistanceMax = theCurrentDistance;
+				theResult = aDataPoints.get(j);
 			}
 
 			itsFurthestPoint = theDistanceMax;
-			
 			theCurrentDistance = 1000000;
 		}
+
+		return theResult;
 	}
 
 	// --------------------------------------------------------------------------
@@ -109,7 +89,7 @@ public class Centrum {
 				System.out.println("X : " + aResult.get(i).getX() + " Y: " + aResult.get(i).getY());
 				System.out.println("------------------------------------------------------------");
 			}
-			
+
 			System.out.println("------------------------------------------------------------");
 			System.out.println("DISTANCE : " + itsFurthestPoint);
 			System.out.println("------------------------------------------------------------");
