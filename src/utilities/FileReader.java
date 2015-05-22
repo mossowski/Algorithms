@@ -5,28 +5,34 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import utilities.MaximaPoint;
 
+import utilities.MaximaPoint;
 import javafx.scene.shape.Line;
 
 public class FileReader {
 
 	private Scanner itsInFileData;
 	public static ArrayList<Point> itsDataPoints;
+	public static ArrayList<Integer> itsDataNumbers;
 	public static ArrayList<MaximaPoint> itsDataMaximaPoints;
 	public static ArrayList<Line> itsDataLines;
 	public static int itsCentrumK;
 	public static int itsCentrumN;
-	
+	public static double itsSumT;
+	public static double itsSumEpsilon;
+
 	// --------------------------------------------------------------------------
 
 	public FileReader(String aFileName) throws FileNotFoundException {
 		itsInFileData = new Scanner(new File(aFileName));
 		itsDataPoints = new ArrayList<Point>();
+		itsDataNumbers = new ArrayList<Integer>();
 		itsDataMaximaPoints = new ArrayList<MaximaPoint>();
 		itsDataLines = new ArrayList<Line>();
 		itsCentrumK = 0;
 		itsCentrumN = 0;
+		itsSumT = 0;
+		itsSumEpsilon = 0;
 	}
 
 	// --------------------------------------------------------------------------
@@ -36,6 +42,8 @@ public class FileReader {
 	 * 
 	 */
 	public void loadData(int aWhatType) {
+
+		boolean isFirstLine = true;
 
 		switch (aWhatType) {
 
@@ -102,24 +110,44 @@ public class FileReader {
 			break;
 
 		case 5:
-			boolean isFirstLine = true;
-			
 			while (itsInFileData.hasNextLine()) {
 				String theLine = itsInFileData.nextLine();
 				Scanner s = new Scanner(theLine);
 
 				s.useDelimiter(" ");
-				
+
 				if (!isFirstLine) {
 					int x = s.nextInt();
 					int y = s.nextInt();
 					Point p = new Point(x, y);
 					itsDataPoints.add(p);
-				}
-				else {
+				} else {
 					itsCentrumK = s.nextInt();
 					itsCentrumN = s.nextInt();
 					isFirstLine = false;
+				}
+				s.close();
+			}
+			itsInFileData.close();
+			break;
+
+		case 6:
+			while (itsInFileData.hasNextLine()) {
+				String theLine = itsInFileData.nextLine();
+				Scanner s = new Scanner(theLine);
+				s.useDelimiter(" ");
+				if (isFirstLine) {
+					while (s.hasNextInt()) {
+						itsDataNumbers.add(s.nextInt());
+					}
+					isFirstLine = false;
+				} else {
+					if (itsSumT == 0){
+						itsSumT = s.nextDouble();
+					}
+					else{
+						itsSumEpsilon = s.nextDouble();
+					}
 				}
 				s.close();
 			}
