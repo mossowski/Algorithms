@@ -186,4 +186,14 @@ public class FileReader {
 		}
 		System.out.println("----------FILE DATA----------\n");
 	}
+	
+	// --------------------------------------------------------------------------
+
+	public static void printDataNumbers() {
+		System.out.print("Data : ");
+		for (int i = 0; i < itsDataNumbers.size(); i++) {
+			System.out.print(itsDataNumbers.get(i) + ",");
+		}
+		System.out.println();
+	}
 }
