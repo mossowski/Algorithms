@@ -1,6 +1,8 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
 public class Sum {
 
@@ -23,9 +25,16 @@ public class Sum {
 					itsL.remove(j);
 			}
 		}
+		
+		int max = 0;
+		
+		for (int i = 0; i < itsL.size(); i++) {
+			if(itsL.get(i) > max)
+				max = itsL.get(i);
+		}
 
 		System.out.println("----------------------------------");
-		System.out.println("Result: " + itsL.get(itsL.size() - 1));
+		System.out.println("Result: " + max);
 		System.out.println("----------------------------------");
 	}
 
@@ -54,67 +63,26 @@ public class Sum {
 	// --------------------------------------------------------------------------
 
 	public ArrayList<Integer> merge(ArrayList<Integer> aDataPoints, int aAi) {
-
-		ArrayList<Integer> theMerged = new ArrayList<Integer>();
-		theMerged.add(aDataPoints.get(0));
-
-		boolean theEndI = true;
-		boolean theEndJ = true;
-		int theI = 1;
-		int theJ = 0;
-		int tmp = aDataPoints.get(0);
-
-		if (aDataPoints.size() == 1)
-			theMerged.add(aDataPoints.get(0) + aAi);
-		else {
-			while (theEndI || theEndJ) {
-				// if first array end just check for duplicates
-				if (!theEndI) {
-					if (tmp != aDataPoints.get(theJ) + aAi) {
-						theMerged.add(aDataPoints.get(theJ) + aAi);
-						if (theJ < aDataPoints.size() - 1)
-							theJ++;
-						else
-							theEndJ = false;
-					}
-					else{
-						if (theJ < aDataPoints.size() - 1)
-							theJ++;
-						else
-							theEndJ = false;
-					}
-				}
-				// if first array hold value <= then second array value and not
-				// duplicate, add from first array
-				// and increment array
-				else if ((aDataPoints.get(theI) <= (aDataPoints.get(theJ) + aAi)) && tmp != aDataPoints.get(theJ) + aAi) {
-					theMerged.add(aDataPoints.get(theI));
-					tmp = aDataPoints.get(theI);
-
-					if (theI < aDataPoints.size() - 1)
-						theI++;
-					else
-						theEndI = false;
-				}
-				// if first array hold value > then second array value and not
-				// duplicate, add from second array
-				// and increment array
-				else if (aDataPoints.get(theI) > aDataPoints.get(theJ) + aAi && tmp != aDataPoints.get(theJ) + aAi) {
-					theMerged.add(aDataPoints.get(theJ) + aAi);
-					tmp = aDataPoints.get(theJ) + aAi;
-
-					if (theJ < aDataPoints.size() - 1)
-						theJ++;
-					else
-						theEndJ = false;
-				}
-				// if duplicate, increment second array
-				else if (tmp == aDataPoints.get(theJ) + aAi) {
-					theJ++;
-				}
-			}
+		
+		HashSet<Integer> theHash = new HashSet<Integer>();
+		theHash.addAll(aDataPoints);
+		
+		for(int i = 0 ; i < aDataPoints.size(); i++)
+		{
+			theHash.add(aDataPoints.get(i) + aAi);
 		}
+		
+		ArrayList<Integer> theMerged = new ArrayList<Integer>();
+		
+		theMerged.addAll(theHash);
+		
+		Collections.sort(theMerged);
 
+		for(int i = 0 ; i < theMerged.size(); i++)
+		{
+			System.out.println(i + ") " + theMerged.get(i));
+		}
+		
 		return theMerged;
 	}
 
