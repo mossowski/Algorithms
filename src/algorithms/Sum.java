@@ -26,12 +26,7 @@ public class Sum {
 			}
 		}
 		
-		int max = 0;
-		
-		for (int i = 0; i < itsL.size(); i++) {
-			if(itsL.get(i) > max)
-				max = itsL.get(i);
-		}
+		int max = Collections.max(itsL);
 
 		System.out.println("----------------------------------");
 		System.out.println("Result: " + max);
