@@ -78,11 +78,6 @@ public class Sum {
 		
 		Collections.sort(theMerged);
 
-		for(int i = 0 ; i < theMerged.size(); i++)
-		{
-			System.out.println(i + ") " + theMerged.get(i));
-		}
-		
 		return theMerged;
 	}
 
