@@ -8,6 +8,7 @@ public class SumManager {
 	SumManager() {
 		Sum su = new Sum();
 		su.sumAlgorithm(FileReader.itsDataNumbers, FileReader.itsSumT, FileReader.itsSumEpsilon);
+		su.printResult();
 	}
 
 }

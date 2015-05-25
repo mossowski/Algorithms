@@ -26,11 +26,6 @@ public class Sum {
 			}
 		}
 		
-		int max = Collections.max(itsL);
-
-		System.out.println("----------------------------------");
-		System.out.println("Result: " + max);
-		System.out.println("----------------------------------");
 	}
 
 	// --------------------------------------------------------------------------
@@ -74,6 +69,15 @@ public class Sum {
 		Collections.sort(theMerged);
 
 		return theMerged;
+	}
+	
+	// --------------------------------------------------------------------------
+	
+	public void printResult() {
+		
+		System.out.println("----------------------------------");
+		System.out.println("Result: " + Collections.max(itsL));
+		System.out.println("----------------------------------");
 	}
 
 }
